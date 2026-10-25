@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formations en informatique</title>
+</head>
+
+<body>
+
+    <!-- Question 1 : Titre de la page -->
+    <h1 align="center">Formations en informatique</h1>
+
+    <!-- Question 2 : Liste non ordonnée -->
+    <h2>Liste des modules</h2>
+    <ul>
+        <li>Développement Web</li>
+        <li>Réseaux informatiques</li>
+        <li>Bases de données</li>
+        <li>Algorithmique</li>
+    </ul>
+
+    <!-- Question 3 : Liste ordonnée -->
+    <h2>Étapes d'inscription</h2>
+    <ol>
+        <li>Inscription</li>
+        <li>Validation du dossier</li>
+        <li>Choix de la formation</li>
+        <li>Confirmation de l'inscription</li>
+    </ol>
+
+    <!-- Question 4 : Numérotation romaine -->
+    <h2>Étapes avec chiffres romains</h2>
+    <ol type="I">
+        <li>Inscription</li>
+        <li>Validation du dossier</li>
+        <li>Choix de la formation</li>
+        <li>Confirmation de l'inscription</li>
+    </ol>
+
+    <!-- Question 5 : Programme de formation -->
+    <h2>Programme de formation</h2>
+    <dl>
+        <dt><strong>Développement Web</strong></dt>
+        <dd>HTML</dd>
+        <dd>CSS</dd>
+        <dd>JavaScript</dd>
+
+        <dt><strong>Réseaux informatiques</strong></dt>
+        <dd>Ethernet</dd>
+        <dd>TCP/IP</dd>
+        <dd>Routage</dd>
+
+        <dt><strong>Bases de données</strong></dt>
+        <dd>MySQL</dd>
+        <dd>Oracle</dd>
+    </dl>
+
+    <!-- Formulaire d'inscription -->
+    <h2>Formulaire d'inscription</h2>
+
+    <form action="#" method="post" enctype="multipart/form-data">
+
+        <fieldset>
+            <legend>Informations personnelles</legend>
+
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+            <br><br>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+            <br><br>
+
+            <label for="mail">Adresse e-mail :</label>
+            <input type="email" id="mail" name="email" required>
+            <br><br>
+
+            <label for="motdepasse">Mot de passe :</label>
+            <input type="password" id="motdepasse"
+                   name="motdepasse" required>
+            <br><br>
+
+            <label for="date_naissance">Date de naissance :</label>
+            <input type="date" id="date_naissance"
+                   name="date_naissance" required>
+            <br><br>
+
+            <label for="age">Âge (18 à 60 ans) :</label>
+            <input type="number" id="age" name="age"
+                   min="18" max="60" required>
+            <br><br>
+
+            <label for="num">Numéro de téléphone :</label>
+            <input type="tel" id="num" name="tel" required>
+            <br><br>
+
+            <p>Sexe :</p>
+            <input type="radio" id="femme" name="sexe"
+                   value="Femme" required>
+            <label for="femme">Femme</label>
+
+            <input type="radio" id="homme" name="sexe"
+                   value="Homme">
+            <label for="homme">Homme</label>
+            <br><br>
+
+            <label for="annee">Niveau d'étude :</label>
+            <select id="annee" name="annee">
+                <option value="1">1ère année</option>
+                <option value="2">2ème année</option>
+                <option value="3">3ème année</option>
+            </select>
+        </fieldset>
+
+        <!-- Technologies maîtrisées -->
+        <h3>Technologies maîtrisées</h3>
+
+        <input type="checkbox" id="html" name="langages[]"
+               value="HTML">
+        <label for="html">HTML</label>
+        <br>
+
+        <input type="checkbox" id="css" name="langages[]"
+               value="CSS">
+        <label for="css">CSS</label>
+        <br>
+
+        <input type="checkbox" id="javascript" name="langages[]"
+               value="JavaScript">
+        <label for="javascript">JavaScript</label>
+        <br>
+
+        <input type="checkbox" id="python" name="langages[]"
+               value="Python">
+        <label for="python">Python</label>
+        <br><br>
+
+        <!-- Domaines d'intérêt -->
+        <h3>Domaines d'intérêt</h3>
+
+        <input type="checkbox" id="web" name="interets[]"
+               value="Développement Web">
+        <label for="web">Développement Web</label>
+        <br>
+
+        <input type="checkbox" id="reseaux" name="interets[]"
+               value="Réseaux">
+        <label for="reseaux">Réseaux</label>
+        <br>
+
+        <input type="checkbox" id="cybersecurite" name="interets[]"
+               value="Cybersécurité">
+        <label for="cybersecurite">Cybersécurité</label>
+        <br>
+
+        <input type="checkbox" id="ia" name="interets[]"
+               value="Intelligence artificielle">
+        <label for="ia">Intelligence artificielle</label>
+        <br><br>
+
+        <!-- Choix de filière -->
+        <label for="filiere">Choix de filière :</label>
+        <select id="filiere" name="filiere">
+            <option value="GI">Génie informatique</option>
+            <option value="RT">Réseaux et télécommunications</option>
+            <option value="IA">Intelligence artificielle</option>
+            <option value="CS">Cybersécurité</option>
+        </select>
+        <br><br>
+
+        <!-- Motivation -->
+        <label for="motivation">Entrer votre motivation :</label>
+        <br>
+        <textarea id="motivation" name="motivation"
+                  rows="5" cols="50"
+                  placeholder="Entrez votre motivation ici"></textarea>
+        <br><br>
+
+        <!-- CV -->
+        <label for="cv">Entrer votre CV :</label>
+        <input type="file" id="cv" name="cv"
+               accept=".pdf,.doc,.docx">
+        <br><br>
+
+        <input type="submit" value="Envoyer">
+        <input type="reset" value="Effacer">
+
+    </form>
+
+</body>
+</html>
