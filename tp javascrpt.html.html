@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>TP JavaScript complet</title>
+</head>
+
+<body>
+
+    <h1>TP JavaScript</h1>
+
+    <!-- ================= EXERCICE 1 ================= -->
+
+    <h2>Exercice 1 : Variables et boîtes de dialogue</h2>
+
+    <button onclick="demarrer()">Commencer</button>
+
+    <hr>
+
+    <!-- ================= EXERCICE 2 ================= -->
+
+    <h2>Exercice 2 : Outils de calcul</h2>
+
+    <label>Saisir un entier N :</label>
+    <input type="number" id="nombre">
+
+    <button id="btnSomme">Calculer la somme</button>
+    <button id="btnPairs">Afficher les nombres pairs</button>
+
+    <p id="resultatCalcul"></p>
+
+    <hr>
+
+    <!-- ================= EXERCICE 3 ================= -->
+
+    <section id="cours">
+
+        <h2 id="titreCours">Découvrir JavaScript</h2>
+
+        <p class="chapitre">Les variables</p>
+        <p class="chapitre important">Les fonctions</p>
+        <p class="chapitre">Les événements</p>
+
+        <button id="modifier">Modifier la présentation</button>
+
+    </section>
+
+    <hr>
+
+    <!-- ================= EXERCICE 4 ================= -->
+
+    <h2>Exercice 4 : Zone interactive</h2>
+
+    <label for="prenom">Prénom :</label>
+
+    <input type="text" id="prenom" onfocus="mettreEnEvidence(this)" onblur="retablirStyle(this)"
+        oninput="afficherSaisie(this)">
+
+    <p id="apercu"></p>
+
+    <button id="selectionner">Sélectionner le texte</button>
+
+    <p id="survol" onmouseover="changerCouleur(this)" onmouseout="retablirCouleur(this)">
+        Survolez ce texte.
+    </p>
+
+    <hr>
+
+    <!-- ================= EXERCICE 5 ================= -->
+
+    <h2>Exercice 5 : Formulaire d'inscription</h2>
+
+    <form id="formInscription" name="inscription">
+
+        <p>
+            <label>Nom :</label>
+            <input type="text" name="nom">
+        </p>
+
+        <p>
+            <label>Profession :</label>
+            <select name="profession">
+                <option value="">Choisir une profession</option>
+                <option value="Technicien">Technicien</option>
+                <option value="Ingénieur">Ingénieur</option>
+                <option value="Médecin">Médecin</option>
+            </select>
+        </p>
+
+        <p>
+            Sexe :
+            <label><input type="radio" name="sexe" value="H"> H</label>
+            <label><input type="radio" name="sexe" value="F"> F</label>
+        </p>
+
+        <p>
+            Langues :
+            <label><input type="checkbox" name="langue" value="Arabe"> Arabe</label>
+            <label><input type="checkbox" name="langue" value="Français"> Français</label>
+        </p>
+
+        <button type="submit">Inscrire</button>
+        <button type="reset">Effacer</button>
+
+    </form>
+
+    <p id="message" style="color:red"></p>
+
+    <h3>Récapitulatif</h3>
+    <p id="recapitulatif"></p>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        // =================================================
+        // EXERCICE 1
+        // =================================================
+
+        function demarrer() {
+
+            const prenom = prompt("Entrez votre prénom :");
+
+            if (prenom === null) {
+                return;
+            }
+
+            if (prenom.trim() === "") {
+                alert("Le prénom est obligatoire.");
+                return;
+            }
+
+            const saisieAge = prompt("Entrez votre âge :");
+
+            if (saisieAge === null || saisieAge.trim() === "") {
+                alert("Âge invalide.");
+                return;
+            }
+
+            const age = Number(saisieAge);
+
+            if (!Number.isFinite(age) || age < 0) {
+                alert("Veuillez saisir un âge valide.");
+                return;
+            }
+
+            console.log("Prénom :", prenom);
+            console.log("Type :", typeof prenom);
+
+            console.log("Âge :", age);
+            console.log("Type :", typeof age);
+
+            alert("Bonjour " + prenom +
+                ", vous aurez " + (age + 1) +
+                " ans l'année prochaine.");
+
+            const continuer = confirm("Voulez-vous continuer ?");
+
+            console.log("Réponse :", continuer);
+        }
+
+
+        // =================================================
+        // EXERCICE 2
+        // =================================================
+
+        // Fonction pour calculer la somme
+        function sommeEntiers(n) {
+
+            let somme = 0;
+
+            for (let i = 1; i <= n; i++) {
+                somme += i;
+            }
+
+            return somme;
+        }
+
+
+        // Fonction pour afficher les nombres pairs
+        function nombresPairs(n) {
+
+            let resultat = "";
+            let i = 0;
+
+            while (i <= n) {
+                resultat += i + " ";
+                i += 2;
+            }
+
+            return resultat.trim();
+        }
+
+
+        // Vérification du nombre
+        function verifierNombre() {
+
+            const champ = document.getElementById("nombre");
+            const n = Number(champ.value);
+
+            if (champ.value.trim() === "" ||
+                !Number.isFinite(n) ||
+                n % 1 !== 0 ||
+                n < 1 || n > 100) {
+
+                document.getElementById("resultatCalcul").textContent =
+                    "Erreur : saisir un entier entre 1 et 100.";
+
+                return null;
+            }
+
+            return n;
+        }
+
+
+        // Bouton somme
+        document.getElementById("btnSomme").addEventListener("click", function () {
+
+            const n = verifierNombre();
+
+            if (n === null) return;
+
+            document.getElementById("resultatCalcul").textContent =
+                "Somme : " + sommeEntiers(n);
+        });
+
+
+        // Bouton nombres pairs
+        document.getElementById("btnPairs").addEventListener("click", function () {
+
+            const n = verifierNombre();
+
+            if (n === null) return;
+
+            document.getElementById("resultatCalcul").textContent =
+                "Nombres pairs : " + nombresPairs(n);
+        });
+
+
+        // =================================================
+        // EXERCICE 3
+        // =================================================
+
+        const titre = document.getElementById("titreCours");
+
+        const sectionCours = document.getElementById("cours");
+
+        const paragraphes = sectionCours.getElementsByTagName("p");
+
+        const chapitres = document.getElementsByClassName("chapitre");
+
+        const chapitreImportant = document.querySelector(".chapitre.important");
+
+        const tousLesChapitres = document.querySelectorAll("#cours p.chapitre");
+
+        console.log("Nombre de paragraphes :", paragraphes.length);
+
+
+        // Modification de la présentation
+        document.getElementById("modifier").addEventListener("click", function () {
+
+            titre.textContent = "JavaScript : une page interactive";
+
+            for (let i = 0; i < chapitres.length; i++) {
+                chapitres[i].style.color = "blue";
+            }
+
+            chapitreImportant.style.fontWeight = "bold";
+
+            this.textContent = "Présentation modifiée";
+
+        });
+
+
+        // =================================================
+        // EXERCICE 4
+        // =================================================
+
+        // Fond jaune au focus
+        function mettreEnEvidence(champ) {
+            champ.style.backgroundColor = "lightyellow";
+        }
+
+        // Supprimer le style
+        function retablirStyle(champ) {
+            champ.style.backgroundColor = "";
+        }
+
+
+
+        function afficherSaisie(champ) {
+            document.getElementById("apercu").textContent =
+                "Bonjour " + champ.value;
+        }
+
+        // Changer la couleur en rouge
+        function changerCouleur(element) {
+            element.style.color = "red";
+        }
+
+        // Rétablir la couleur
+        function retablirCouleur(element) {
+            element.style.color = "";
+        }
+
+
+        // Sélectionner le texte
+        const champPrenom = document.getElementById("prenom");
+
+        document.getElementById("selectionner").addEventListener("click", function () {
+
+            champPrenom.focus();
+
+            champPrenom.select();
+
+        });
+
+
+        // =================================================
+        // EXERCICE 5
+        // =================================================
+
+        // Récupérer le formulaire
+        const formulaire = document.forms["inscription"];
+
+        // Récupérer le champ nom
+        const champNom = formulaire.elements["nom"];
+
+        // Récupérer les zones d'affichage
+        const message = document.getElementById("message");
+        const recapitulatif = document.getElementById("recapitulatif");
+
+
+        // Événement submit
+        formulaire.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            message.textContent = "";
+            recapitulatif.textContent = "";
+
+            // Récupérer les informations
+            const nom = champNom.value.trim();
+
+            const profession = formulaire.elements["profession"].value;
+
+            const sexe = formulaire.querySelector(
+                'input[name="sexe"]:checked'
+            );
+
+            const casesLangues = formulaire.querySelectorAll(
+                'input[name="langue"]'
+            );
+
+            let langues = [];
+
+            // Vérifier les langues sélectionnées
+            for (let i = 0; i < casesLangues.length; i++) {
+
+                if (casesLangues[i].checked) {
+                    langues.push(casesLangues[i].value);
+                }
+
+            }
+
+
+            // Vérifier le nom
+            if (nom.length < 3) {
+
+                message.textContent =
+                    "Erreur : le nom doit contenir au moins 3 caractères.";
+
+                champNom.focus();
+
+                return;
+            }
+
+
+            // Vérifier la profession
+            if (profession === "") {
+
+                message.textContent =
+                    "Erreur : veuillez choisir une profession.";
+
+                formulaire.elements["profession"].focus();
+
+                return;
+            }
+
+
+            // Vérifier le sexe
+            if (sexe === null) {
+
+                message.textContent =
+                    "Erreur : veuillez sélectionner le sexe.";
+
+                return;
+            }
+
+
+            // Vérifier les langues
+            if (langues.length === 0) {
+
+                message.textContent =
+                    "Erreur : veuillez choisir au moins une langue.";
+
+                return;
+            }
+
+
+            // Créer l'objet inscription
+            const inscription = {
+
+                nom: nom,
+
+                profession: profession,
+
+                sexe: sexe.value,
+
+                langues: langues.join(", "),
+
+                // Méthode presenter()
+                presenter: function () {
+
+                    return "Nom : " + this.nom +
+                        "\nProfession : " + this.profession +
+                        "\nSexe : " + this.sexe +
+                        "\nLangues : " + this.langues;
+
+                }
+
+            };
+
+
+            // Afficher le récapitulatif
+            recapitulatif.textContent = inscription.presenter();
+
+            message.style.color = "green";
+
+            message.textContent = "Inscription effectuée avec succès !";
+
+        });
+
+
+        // Événement reset
+        formulaire.addEventListener("reset", function () {
+
+            message.textContent = "";
+
+            recapitulatif.textContent = "";
+
+            message.style.color = "red";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
